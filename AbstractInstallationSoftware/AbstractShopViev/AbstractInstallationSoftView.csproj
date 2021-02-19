@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractInstallationSoftListImplement\AbstractInstallationSoftListImplement.csproj">
-      <Project>{BCB11477-66C0-4925-A9D0-9C2B338E4DF8}</Project>
+      <Project>{bcb11477-66c0-4925-a9d0-9c2b338e4df8}</Project>
       <Name>AbstractInstallationSoftListImplement</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractInstallationSoftwareFileImplement\AbstractInstallationSoftwareFileImplement.csproj">

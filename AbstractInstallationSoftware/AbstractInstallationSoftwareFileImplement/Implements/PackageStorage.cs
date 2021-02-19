@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractInstallationSoftListImplement
+namespace AbstractInstallationSoftwareFileImplement.Implements
 {
     public class PackageStorage : IPackageStorage
     {

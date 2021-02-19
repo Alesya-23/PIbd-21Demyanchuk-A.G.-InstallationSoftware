@@ -57,7 +57,27 @@ namespace AbstractInstallationSoftwareFileImplement
         }
         private List<Order> LoadOrders()
         {
-            // прописать логику
+            var list = new List<Order>();
+            if (File.Exists(OrderFileName))
+            {
+                XDocument xDocument = XDocument.Load(OrderFileName);
+                var xElements = xDocument.Root.Elements("Order").ToList();
+                foreach(var element in xElements)
+                {
+                    list.Add(new Order
+                    {
+                        Id = Convert.ToInt32(element.Attribute("Id").Value),
+                        PackageId = Convert.ToInt32(element.Attribute("PackageId"),
+                        PackageName = ResultProductName,
+                        Count = order.Count,
+                        Status = order.Status,
+                        Sum = order.Sum,
+                        DateCreate = order.DateCreate,
+                        DateImplement = order.DateImplement,
+                    });
+                }
+            }
+            return list;
         }
         private List<Package> LoadPackages()
         {
@@ -65,7 +85,7 @@ namespace AbstractInstallationSoftwareFileImplement
             if (File.Exists(PackageFileName))
             {
                 XDocument xDocument = XDocument.Load(PackageFileName);
-                var xElements = xDocument.Root.Elements("Product").ToList();
+                var xElements = xDocument.Root.Elements("Package").ToList();
                 foreach (var elem in xElements)
                 {
                     var prodComp = new Dictionary<int, int>();

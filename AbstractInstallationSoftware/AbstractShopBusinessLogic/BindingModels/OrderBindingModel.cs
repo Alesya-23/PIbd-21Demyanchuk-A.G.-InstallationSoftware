@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using AbstractInstallationSoftBusinessLogic.Enums;
-using System;
 namespace AbstractInstallationSoftBusinessLogic.BindingModels
 {
     /// <summary>
@@ -16,11 +14,9 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
         public int? Id { get; set; }
         public int PackageId { get; set; }
         public int Count { get; set; }
-
         public decimal Sum { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
     }
 }
-

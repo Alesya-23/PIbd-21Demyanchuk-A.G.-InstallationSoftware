@@ -19,7 +19,6 @@ namespace AbstractInstallationSoftView
         {
             LoadData();
         }
-
         private void LoadData()
         {
             try
@@ -81,7 +80,6 @@ namespace AbstractInstallationSoftView
                 }
             }
         }
-
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();

@@ -1,13 +1,14 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
+using AbstractInstallationSoftListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractInstallationSoftListImplement
+namespace AbstractInstallationSoftListImplement.Implements
 {
     public class PackageStorage : IPackageStorage
     {

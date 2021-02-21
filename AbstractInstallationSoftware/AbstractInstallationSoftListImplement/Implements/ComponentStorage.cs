@@ -1,13 +1,14 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
+using AbstractInstallationSoftListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractInstallationSoftListImplement
+namespace AbstractInstallationSoftListImplement.Implements
 {
     public class ComponentStorage : IComponentStorage
     {
@@ -16,7 +17,7 @@ namespace AbstractInstallationSoftListImplement
         {
             source = DataListSingleton.GetInstance();
         }
- public List<ComponentViewModel> GetFullList()
+        public List<ComponentViewModel> GetFullList()
         {
             List<ComponentViewModel> result = new List<ComponentViewModel>();
             foreach (var component in source.Components)
@@ -71,7 +72,7 @@ namespace AbstractInstallationSoftListImplement
         }
         public void Update(ComponentBindingModel model)
         {
-        Component tempComponent = null;
+            Component tempComponent = null;
             foreach (var component in source.Components)
             {
                 if (component.Id == model.Id)

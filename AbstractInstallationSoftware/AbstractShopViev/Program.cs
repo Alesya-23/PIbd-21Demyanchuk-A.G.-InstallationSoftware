@@ -1,7 +1,6 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BusinessLogics;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
-using AbstractInstallationSoftListImplement;
-using AbstractIntstallationSoftwareListImplement;
+using AbstractInstallationSoftListImplement.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

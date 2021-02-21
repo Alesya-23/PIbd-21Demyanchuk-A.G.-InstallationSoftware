@@ -19,7 +19,6 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
         public string PackageName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }
-
         [DisplayName("Сумма")]
         public decimal Sum { get; set; }
         [DisplayName("Статус")]
@@ -30,4 +29,3 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
         public DateTime? DateImplement { get; set; }
     }
 }
-

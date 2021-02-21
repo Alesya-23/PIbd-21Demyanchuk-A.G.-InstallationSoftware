@@ -17,4 +17,3 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
         public decimal Sum { get; set; }
     }
 }
-

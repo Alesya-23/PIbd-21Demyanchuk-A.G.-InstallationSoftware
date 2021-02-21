@@ -2,13 +2,14 @@
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
 using AbstractInstallationSoftListImplement;
+using AbstractInstallationSoftListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractIntstallationSoftwareListImplement
+namespace AbstractIntstallationSoftwareListImplement.Implements
 {
     public class OrderStorage : IOrderStorage
 
@@ -95,11 +96,11 @@ namespace AbstractIntstallationSoftwareListImplement
 
         public void Delete(OrderBindingModel model)
         {
-            for (int i = 0; i < source.Components.Count; ++i)
+            for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Components[i].Id == model.Id.Value)
+                if (source.Orders[i].Id == model.Id)
                 {
-                    source.Components.RemoveAt(i);
+                    source.Orders.RemoveAt(i);
                     return;
                 }
             }

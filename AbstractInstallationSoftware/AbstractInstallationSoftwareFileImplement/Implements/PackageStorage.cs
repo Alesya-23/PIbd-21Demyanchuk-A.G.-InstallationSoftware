@@ -1,7 +1,7 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
-using AbstractInstallationSoftwareFileImplement;
+using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +47,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         }
         public void Insert(PackageBindingModel model)
         {
-            int maxId = source.Packages.Count > 0 ? source.Components.Max(rec => rec.Id)
-    : 0;
+            int maxId = source.Packages.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
             var element = new Package
             {
                 Id = maxId + 1,

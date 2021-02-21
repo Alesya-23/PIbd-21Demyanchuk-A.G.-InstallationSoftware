@@ -1,4 +1,4 @@
-﻿namespace AbstractInstallationSoftListImplement { 
+﻿namespace AbstractInstallationSoftwareFileImplement.Models{ 
     /// <summary>
     /// Компонент, требуемый для изготовления изделия
     /// </summary>

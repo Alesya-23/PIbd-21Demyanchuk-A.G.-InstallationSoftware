@@ -1,4 +1,4 @@
-﻿using AbstractInstallationSoftListImplement;
+﻿using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +44,7 @@ namespace AbstractInstallationSoftwareFileImplement
             {
                 XDocument xDocument = XDocument.Load(ComponentFileName);
                 var xElements = xDocument.Root.Elements("Component").ToList();
-            foreach (var elem in xElements)
+                foreach (var elem in xElements)
                 {
                     list.Add(new Component
                     {
@@ -62,18 +62,17 @@ namespace AbstractInstallationSoftwareFileImplement
             {
                 XDocument xDocument = XDocument.Load(OrderFileName);
                 var xElements = xDocument.Root.Elements("Order").ToList();
-                foreach(var element in xElements)
+                foreach (var element in xElements)
                 {
                     list.Add(new Order
                     {
                         Id = Convert.ToInt32(element.Attribute("Id").Value),
-                        PackageId = Convert.ToInt32(element.Attribute("PackageId"),
-                        PackageName = ResultProductName,
-                        Count = order.Count,
-                        Status = order.Status,
-                        Sum = order.Sum,
-                        DateCreate = order.DateCreate,
-                        DateImplement = order.DateImplement,
+                        PackageId = Convert.ToInt32(element.Attribute("PackageId")),
+                        Count = Convert.ToInt32(element.Element("Count").Value),
+                        //Status = Convert.ToInt32(element.Element("Status").Value),
+                        Sum = Convert.ToDecimal(element.Element("Sum").Value),
+                        DateCreate = Convert.ToDateTime(element.Element("DateCreate").Value),
+                        DateImplement = Convert.ToDateTime(element.Element("DateImplement").Value)
                     });
                 }
             }
@@ -117,14 +116,28 @@ namespace AbstractInstallationSoftwareFileImplement
                     new XAttribute("Id", component.Id),
                     new XElement("ComponentName", component.ComponentName)));
                 }
-            XDocument xDocument = new XDocument(xElement);
+                XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ComponentFileName);
             }
         }
         private void SaveOrders()
         {
-            // прописать логику
+            var xElement = new XElement("Orders");
+            foreach (var order in Orders)
+            {
+                xElement.Add(new XElement("Order",
+                new XAttribute("Id", order.Id),
+                new XElement("PackageId", order.PackageId),
+                new XElement("Count", order.Count),
+                new XElement("Sum", order.Sum),
+                new XElement("Status", order.Status),
+                new XElement("DateCreate", order.DateCreate),
+                new XElement("DateImplement", order.DateImplement)));
+            }
+            XDocument xDocument = new XDocument(xElement);
+            xDocument.Save(OrderFileName);
         }
+
         private void SavePackages()
         {
             if (Packages != null)

@@ -1,8 +1,8 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
-using AbstractInstallationSoftListImplement;
 using AbstractInstallationSoftwareFileImplement;
+using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AbstractInstallationSoftwareFileImplement.Implements
 {
     public class OrderStorage : IOrderStorage
-    { 
+    {
         private readonly FileDataListSingleton source;
         public OrderStorage()
         {
@@ -31,7 +31,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where(rec => rec.PackageId == model.PackageId)
+            .Where(rec => rec.DateCreate.Equals(model.DateCreate))
            .Select(CreateModel)
             .ToList();
         }
@@ -111,4 +111,3 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         }
     }
 }
-

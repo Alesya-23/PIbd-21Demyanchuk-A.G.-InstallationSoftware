@@ -97,7 +97,7 @@
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonAdd);
             this.Name = "FormPackages";
-            this.Text = "FormPackages";
+            this.Text = "Форма пакетов";
             this.Click += new System.EventHandler(this.FormPackages_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using AbstractInstallationSoftwareFileImplement.Models;
+﻿using AbstractInstallationSoftBusinessLogic.Enums;
+using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -69,10 +70,10 @@ namespace AbstractInstallationSoftwareFileImplement
                         Id = Convert.ToInt32(element.Attribute("Id").Value),
                         PackageId = Convert.ToInt32(element.Attribute("PackageId")),
                         Count = Convert.ToInt32(element.Element("Count").Value),
-                        //Status = Convert.ToInt32(element.Element("Status").Value),
                         Sum = Convert.ToDecimal(element.Element("Sum").Value),
-                        DateCreate = Convert.ToDateTime(element.Element("DateCreate").Value),
-                        DateImplement = Convert.ToDateTime(element.Element("DateImplement").Value)
+                        Status = (OrderStatus)Convert.ToInt32(element.Element("Status").Value),
+                        DateCreate = Convert.ToDateTime(element.Element("DateCreate")?.Value),
+                        DateImplement = string.IsNullOrEmpty(element.Element("DateImplement").Value) ? DateTime.MinValue : Convert.ToDateTime(element.Element("DateImplement").Value)
                     });
                 }
             }

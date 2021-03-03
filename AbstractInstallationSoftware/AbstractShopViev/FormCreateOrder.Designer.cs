@@ -72,8 +72,7 @@
             this.comboBoxPackage.Name = "comboBoxPackage";
             this.comboBoxPackage.Size = new System.Drawing.Size(213, 28);
             this.comboBoxPackage.TabIndex = 3;
-            this.comboBoxPackage.TextChanged += new System.EventHandler(this.ComboBoxPackage_SelectedIndexChanged);
-            this.comboBoxPackage.Click += new System.EventHandler(this.ComboBoxPackage_SelectedIndexChanged);
+            this.comboBoxPackage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPackage_SelectedIndexChanged);
             // 
             // textBoxCount
             // 

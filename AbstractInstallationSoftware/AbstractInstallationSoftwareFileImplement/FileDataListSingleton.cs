@@ -88,11 +88,11 @@ namespace AbstractInstallationSoftwareFileImplement
                 var xElements = xDocument.Root.Elements("Package").ToList();
                 foreach (var elem in xElements)
                 {
-                    var prodComp = new Dictionary<int, int>();
+                    var packComp = new Dictionary<int, int>();
                     foreach (var component in
                    elem.Element("PackageComponents").Elements("PackageComponent").ToList())
                     {
-                        prodComp.Add(Convert.ToInt32(component.Element("Key").Value),
+                        packComp.Add(Convert.ToInt32(component.Element("Key").Value),
                        Convert.ToInt32(component.Element("Value").Value));
                     }
                     list.Add(new Package
@@ -100,7 +100,7 @@ namespace AbstractInstallationSoftwareFileImplement
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         PackageName = elem.Element("PackageName").Value,
                         Price = Convert.ToDecimal(elem.Element("Price").Value),
-                        PackageComponents = prodComp
+                        PackageComponents = packComp
                     });
                 }
             }

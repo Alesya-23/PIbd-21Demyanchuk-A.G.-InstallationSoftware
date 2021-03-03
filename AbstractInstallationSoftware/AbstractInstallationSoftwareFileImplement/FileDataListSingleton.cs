@@ -71,7 +71,7 @@ namespace AbstractInstallationSoftwareFileImplement
                         PackageId = Convert.ToInt32(elem.Element("PackageId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
-                        //Status = (OrderStatus)Convert.ToInt32(elem.Element("Status").Value),
+                        Status = (OrderStatus)Convert.ToInt32(elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate")?.Value),
                         DateImplement = String.IsNullOrEmpty(elem.Element("DateImplement").Value) ? DateTime.MinValue : Convert.ToDateTime(elem.Element("DateImplement").Value)
                     });
@@ -133,7 +133,7 @@ namespace AbstractInstallationSoftwareFileImplement
                     new XElement("PackageId", order.PackageId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
-                    new XElement("Status", order.Status),
+                    new XElement("Status", (int)order.Status),
                     new XElement("DateCreate", order.DateCreate),
                     new XElement("DateImplement", order.DateImplement)));
                 }

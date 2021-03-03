@@ -30,7 +30,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where(rec => rec.DateCreate == (model.DateCreate))
+            .Where(rec => rec.DateCreate == model.DateCreate)
            .Select(CreateModel)
             .ToList();
         }

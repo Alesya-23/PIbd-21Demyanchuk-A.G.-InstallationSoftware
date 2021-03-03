@@ -63,17 +63,17 @@ namespace AbstractInstallationSoftwareFileImplement
             {
                 XDocument xDocument = XDocument.Load(OrderFileName);
                 var xElements = xDocument.Root.Elements("Order").ToList();
-                foreach (var element in xElements)
+                foreach (var elem in xElements)
                 {
                     list.Add(new Order
                     {
-                        Id = Convert.ToInt32(element.Attribute("Id").Value),
-                        PackageId = Convert.ToInt32(element.Attribute("PackageId")),
-                        Count = Convert.ToInt32(element.Element("Count").Value),
-                        Sum = Convert.ToDecimal(element.Element("Sum").Value),
-                        Status = (OrderStatus)Convert.ToInt32(element.Element("Status").Value),
-                        DateCreate = Convert.ToDateTime(element.Element("DateCreate")?.Value),
-                        DateImplement = string.IsNullOrEmpty(element.Element("DateImplement").Value) ? DateTime.MinValue : Convert.ToDateTime(element.Element("DateImplement").Value)
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        PackageId = Convert.ToInt32(elem.Element("PackageId").Value),
+                        Count = Convert.ToInt32(elem.Element("Count").Value),
+                        Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                        //Status = (OrderStatus)Convert.ToInt32(elem.Element("Status").Value),
+                        DateCreate = Convert.ToDateTime(elem.Element("DateCreate")?.Value),
+                        DateImplement = String.IsNullOrEmpty(elem.Element("DateImplement").Value) ? DateTime.MinValue : Convert.ToDateTime(elem.Element("DateImplement").Value)
                     });
                 }
             }
@@ -123,20 +123,23 @@ namespace AbstractInstallationSoftwareFileImplement
         }
         private void SaveOrders()
         {
-            var xElement = new XElement("Orders");
-            foreach (var order in Orders)
+            if (Orders != null)
             {
-                xElement.Add(new XElement("Order",
-                new XAttribute("Id", order.Id),
-                new XElement("PackageId", order.PackageId),
-                new XElement("Count", order.Count),
-                new XElement("Sum", order.Sum),
-                new XElement("Status", order.Status),
-                new XElement("DateCreate", order.DateCreate),
-                new XElement("DateImplement", order.DateImplement)));
+                var xElement = new XElement("Orders");
+                foreach (var order in Orders)
+                {
+                    xElement.Add(new XElement("Order",
+                    new XAttribute("Id", order.Id),
+                    new XElement("PackageId", order.PackageId),
+                    new XElement("Count", order.Count),
+                    new XElement("Sum", order.Sum),
+                    new XElement("Status", order.Status),
+                    new XElement("DateCreate", order.DateCreate),
+                    new XElement("DateImplement", order.DateImplement)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(OrderFileName);
             }
-            XDocument xDocument = new XDocument(xElement);
-            xDocument.Save(OrderFileName);
         }
 
         private void SavePackages()
@@ -144,19 +147,19 @@ namespace AbstractInstallationSoftwareFileImplement
             if (Packages != null)
             {
                 var xElement = new XElement("Packages");
-                foreach (var product in Packages)
+                foreach (var package in Packages)
                 {
                     var compElement = new XElement("PackageComponents");
-                    foreach (var component in product.PackageComponents)
+                    foreach (var component in package.PackageComponents)
                     {
                         compElement.Add(new XElement("PackageComponent",
                         new XElement("Key", component.Key),
                         new XElement("Value", component.Value)));
                     }
-                    xElement.Add(new XElement("Product",
-                     new XAttribute("Id", product.Id),
-                     new XElement("ProductName", product.PackageName),
-                     new XElement("Price", product.Price),
+                    xElement.Add(new XElement("Package",
+                     new XAttribute("Id", package.Id),
+                     new XElement("PackageName", package.PackageName),
+                     new XElement("Price", package.Price),
                      compElement));
                 }
                 XDocument xDocument = new XDocument(xElement);

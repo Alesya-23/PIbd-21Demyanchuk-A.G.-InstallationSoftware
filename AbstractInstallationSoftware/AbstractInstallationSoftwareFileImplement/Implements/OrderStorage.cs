@@ -1,7 +1,6 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
-using AbstractInstallationSoftwareFileImplement;
 using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -31,7 +30,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where(rec => rec.DateCreate.Equals(model.DateCreate))
+            .Where(rec => rec.DateCreate == (model.DateCreate))
            .Select(CreateModel)
             .ToList();
         }
@@ -41,10 +40,9 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
             {
                 return null;
             }
-            var component = source.Orders
-            .FirstOrDefault(rec => rec.PackageId == model.PackageId ||
-           rec.Id == model.Id);
-            return component != null ? CreateModel(component) : null;
+            var order = source.Orders
+            .FirstOrDefault(rec => rec.Id == model.Id);
+            return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
         {

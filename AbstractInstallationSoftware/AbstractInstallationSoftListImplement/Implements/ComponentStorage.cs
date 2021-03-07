@@ -17,7 +17,7 @@ namespace AbstractInstallationSoftListImplement
         {
             source = DataListSingleton.GetInstance();
         }
- public List<ComponentViewModel> GetFullList()
+        public List<ComponentViewModel> GetFullList()
         {
             List<ComponentViewModel> result = new List<ComponentViewModel>();
             foreach (var component in source.Components)
@@ -72,7 +72,7 @@ namespace AbstractInstallationSoftListImplement
         }
         public void Update(ComponentBindingModel model)
         {
-        Component tempComponent = null;
+            Component tempComponent = null;
             foreach (var component in source.Components)
             {
                 if (component.Id == model.Id)

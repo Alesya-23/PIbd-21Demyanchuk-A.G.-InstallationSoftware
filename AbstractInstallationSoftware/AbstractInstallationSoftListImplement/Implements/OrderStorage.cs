@@ -15,12 +15,10 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
 
     {
         private readonly DataListSingleton source;
-
         public OrderStorage()
         {
             source = DataListSingleton.GetInstance();
         }
-
         public List<OrderViewModel> GetFullList()
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
@@ -30,7 +28,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             return result;
         }
-
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
             if (model == null)
@@ -47,7 +44,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             return result;
         }
-
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null)
@@ -63,7 +59,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             return null;
         }
-
         public void Insert(OrderBindingModel model)
         {
             Order tempOrder = new Order { Id = 1 };
@@ -76,7 +71,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             source.Orders.Add(CreateModel(model, tempOrder));
         }
-
         public void Update(OrderBindingModel model)
         {
             Order tempOrder = null;
@@ -93,7 +87,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             CreateModel(model, tempOrder);
         }
-
         public void Delete(OrderBindingModel model)
         {
             for (int i = 0; i < source.Orders.Count; ++i)
@@ -106,7 +99,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
-
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
@@ -117,7 +109,6 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             order.DateImplement = model.DateImplement;
             return order;
         }
-
         private OrderViewModel CreateModel(Order order)
         {
             string ResultProductName = "";

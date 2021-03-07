@@ -141,7 +141,6 @@ namespace AbstractInstallationSoftwareFileImplement
                 xDocument.Save(OrderFileName);
             }
         }
-
         private void SavePackages()
         {
             if (Packages != null)

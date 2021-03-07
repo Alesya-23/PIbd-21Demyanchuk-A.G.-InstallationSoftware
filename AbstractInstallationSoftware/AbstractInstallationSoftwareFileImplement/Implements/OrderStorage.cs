@@ -83,7 +83,6 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
             order.DateImplement = model.DateImplement;
             return order;
         }
-
         private OrderViewModel CreateModel(Order order)
         {
             string ResultPackageName = "";

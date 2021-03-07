@@ -21,4 +21,3 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
         public DateTime? DateImplement { get; set; }
     }
 }
-

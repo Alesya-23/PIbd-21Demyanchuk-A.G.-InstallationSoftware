@@ -30,4 +30,3 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
         public DateTime? DateImplement { get; set; }
     }
 }
-

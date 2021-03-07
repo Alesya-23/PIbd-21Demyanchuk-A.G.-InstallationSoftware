@@ -22,8 +22,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                return new List<PackageViewModel> { _packageStorage.GetElement(model)
-};
+                return new List<PackageViewModel> { _packageStorage.GetElement(model) };
             }
             return _packageStorage.GetFilteredList(model);
         }

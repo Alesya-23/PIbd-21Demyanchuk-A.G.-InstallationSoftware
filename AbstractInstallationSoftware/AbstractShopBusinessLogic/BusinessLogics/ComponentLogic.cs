@@ -20,8 +20,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                return new List<ComponentViewModel> { _componentStorage.GetElement(model)
-};
+                return new List<ComponentViewModel> { _componentStorage.GetElement(model) };
             }
             return _componentStorage.GetFilteredList(model);
         }

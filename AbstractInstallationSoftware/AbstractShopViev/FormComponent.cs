@@ -1,6 +1,5 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.BusinessLogics;
-using AbstractInstallationSoftBusinessLogic.ViewModels;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -21,7 +20,7 @@ namespace AbstractInstallationSoftView
         private void FormComponent_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
-        {
+            {
                 try
                 {
                     var view = logic.Read(new ComponentBindingModel { Id = id })?[0];

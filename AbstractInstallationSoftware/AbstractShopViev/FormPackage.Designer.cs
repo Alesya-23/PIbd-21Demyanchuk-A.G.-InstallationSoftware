@@ -142,7 +142,6 @@
             this.IdComponent});
             this.dataGridView.Location = new System.Drawing.Point(7, 44);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowHeadersWidth = 62;
             this.dataGridView.RowTemplate.Height = 28;
             this.dataGridView.Size = new System.Drawing.Size(365, 182);
@@ -153,6 +152,7 @@
             this.NameComponent.HeaderText = "Название";
             this.NameComponent.MinimumWidth = 8;
             this.NameComponent.Name = "NameComponent";
+            this.NameComponent.ReadOnly = true;
             this.NameComponent.Width = 150;
             // 
             // CountComponent
@@ -160,6 +160,7 @@
             this.CountComponent.HeaderText = "Количество";
             this.CountComponent.MinimumWidth = 8;
             this.CountComponent.Name = "CountComponent";
+            this.CountComponent.ReadOnly = true;
             this.CountComponent.Width = 150;
             // 
             // IdComponent
@@ -167,6 +168,7 @@
             this.IdComponent.HeaderText = "ID";
             this.IdComponent.MinimumWidth = 8;
             this.IdComponent.Name = "IdComponent";
+            this.IdComponent.ReadOnly = true;
             this.IdComponent.Visible = false;
             this.IdComponent.Width = 150;
             // 

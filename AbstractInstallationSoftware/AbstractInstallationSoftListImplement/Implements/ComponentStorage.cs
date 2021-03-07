@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractInstallationSoftListImplement
+namespace AbstractInstallationSoftListImplement.Implements
 {
     public class ComponentStorage : IComponentStorage
     {

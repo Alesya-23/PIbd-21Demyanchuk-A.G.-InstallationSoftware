@@ -2,13 +2,6 @@
 using AbstractInstallationSoftBusinessLogic.BusinessLogics;
 using AbstractInstallstionSoftView;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -28,7 +21,6 @@ namespace AbstractInstallationSoftView
         {
             LoadData();
         }
-
         private void LoadData()
         {
             try
@@ -91,11 +83,9 @@ namespace AbstractInstallationSoftView
                 }
             }
         }
-
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
     }
 }
-

@@ -36,7 +36,6 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                 Status = OrderStatus.Принят
             });
         }
-
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
             var order = _orderStorage.GetElement(new OrderBindingModel

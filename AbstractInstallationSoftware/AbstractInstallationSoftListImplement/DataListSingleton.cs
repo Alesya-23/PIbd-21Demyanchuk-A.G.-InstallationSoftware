@@ -13,11 +13,13 @@ namespace AbstractInstallationSoftListImplement
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Package> Packages { get; set; }
+        public List<Storehouse> Storehouse { get; set; }
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
             Packages = new List<Package>();
+            Storehouse = new List<Storehouse>();
         }
         public static DataListSingleton GetInstance()
         {

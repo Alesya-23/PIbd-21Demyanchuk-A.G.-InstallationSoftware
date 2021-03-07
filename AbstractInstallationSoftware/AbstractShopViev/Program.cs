@@ -29,11 +29,15 @@ namespace AbstractInstallationSoftView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPackageStorage, PackageStorage>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorehouse, StorehouseStorage>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComponentLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<PackageLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<StorehouseLogic>(new
+         HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

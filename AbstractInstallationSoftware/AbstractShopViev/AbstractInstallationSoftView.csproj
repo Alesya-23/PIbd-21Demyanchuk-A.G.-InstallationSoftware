@@ -70,6 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddingStorehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddingStorehouse.designer.cs">
+      <DependentUpon>FormAddingStorehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,8 +118,23 @@
     <Compile Include="FormPackages.Designer.cs">
       <DependentUpon>FormPackages.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStorehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorehouse.designer.cs">
+      <DependentUpon>FormStorehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStorehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorehouses.designer.cs">
+      <DependentUpon>FormStorehouses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddingStorehouse.resx">
+      <DependentUpon>FormAddingStorehouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormComponent.resx">
       <DependentUpon>FormComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPackages.resx">
       <DependentUpon>FormPackages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorehouse.resx">
+      <DependentUpon>FormStorehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorehouses.resx">
+      <DependentUpon>FormStorehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

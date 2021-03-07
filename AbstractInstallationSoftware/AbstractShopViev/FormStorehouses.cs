@@ -27,7 +27,6 @@ namespace AbstractInstallationSoftView
         {
             LoadData();
         }
-
         private void LoadData()
         {
             try

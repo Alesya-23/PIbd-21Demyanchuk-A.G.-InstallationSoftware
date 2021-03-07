@@ -10,7 +10,7 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
         public int Id { get; set; }
         [DisplayName("Название склада")]
         public string StoreHouseName { get; set; }
-        [DisplayName("Ответсвенный")]
+        [DisplayName("Ответственный")]
         public string FullNameResponsiblePerson { get; set; }
         public Dictionary<int, (string, int)> StorehouseComponents { get; set; }
         [DisplayName("Дата создания")]

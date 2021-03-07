@@ -61,8 +61,7 @@ namespace AbstractInstallationSoftView
                MessageBoxIcon.Error);
             }
         }
-       
-        private void ButtonSave_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
@@ -84,6 +83,11 @@ namespace AbstractInstallationSoftView
             }
             try
             {
+                int countComponent = Convert.ToInt32(textBoxCount.Text);
+                if (countComponent < 1)
+                {
+                    throw new Exception("Нельзя пополнить склад отприцательным количеством");
+                }
                 _logicS.FillStore(new StorehouseBindingModel
                 {
                     Id = Convert.ToInt32(comboBoxStore.SelectedValue)

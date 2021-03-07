@@ -73,6 +73,7 @@
             this.buttonCancel.TabIndex = 15;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // textBoxCount
             // 
@@ -95,9 +96,9 @@
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(102, 26);
             this.buttonSave.TabIndex = 14;
-            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.Text = "Пополнить";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // comboBoxComponent
             // 
@@ -121,7 +122,7 @@
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelPackage);
             this.Name = "FormAddingStorehouse";
-            this.Text = "FormAddingStorehouse";
+            this.Text = "Пополнение склада";
             this.Load += new System.EventHandler(this.FormAddStorehouse_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

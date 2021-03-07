@@ -39,7 +39,7 @@ namespace AbstractInstallationSoftView
                         textBoxNameStore.Text = view.StoreHouseName;
                         textBoxResponce.Text = view.FullNameResponsiblePerson.ToString();
                         dateTimePickerDateCreate.Value = view.DateGreate;
-                        storehouseComponents = view.StorehouseComponents ??  new Dictionary<int, (string, int)>();
+                        storehouseComponents = view.StorehouseComponents ?? new Dictionary<int, (string, int)>();
                         LoadData();
                     }
                 }

@@ -24,8 +24,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                return new List<StorehouseViewModel> { _storehouseStorage.GetElement(model)
-};
+                return new List<StorehouseViewModel> { _storehouseStorage.GetElement(model) };
             }
             return _storehouseStorage.GetFilteredList(model);
         }

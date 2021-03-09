@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AbstractInstallationSoftwareDatabaseImplement
 {
-    class AbstractInstallSoftDatabase: DbContext
+    class AbstractInstallSoftDatabase : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -56,7 +56,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             {
                 return null;
             }
-
             using (var context = new AbstractInstallSoftDatabase())
             {
                 var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -94,7 +93,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 }
             }
         }
-
         public void Update(OrderBindingModel model)
         {
             using (var context = new AbstractInstallSoftDatabase())
@@ -120,7 +118,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 }
             }
         }
-
         public void Delete(OrderBindingModel model)
         {
             using (var context = new AbstractInstallSoftDatabase())
@@ -137,7 +134,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 }
             }
         }
-
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;

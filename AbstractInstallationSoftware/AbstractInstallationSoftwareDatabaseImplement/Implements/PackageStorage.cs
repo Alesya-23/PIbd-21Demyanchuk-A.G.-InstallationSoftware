@@ -92,7 +92,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 {
                     try
                     {
-                       Package package = CreateModel(model, new Package());
+                        Package package = CreateModel(model, new Package());
                         context.Packages.Add(package);
                         context.SaveChanges();
                         transaction.Commit();
@@ -123,7 +123,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                         context.SaveChanges();
                         transaction.Commit();
                     }
-                        catch
+                    catch
                     {
                         transaction.Rollback();
                         throw;

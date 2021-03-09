@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftLis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwareFileImplement", "AbstractInstallationSoftwareFileImplement\AbstractInstallationSoftwareFileImplement.csproj", "{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractInstallationSoftwareDatabaseImplement", "AbstractInstallationSoftwareDatabaseImplement\AbstractInstallationSoftwareDatabaseImplement.csproj", "{A60F3B52-B613-46B4-86CB-C1F1F89F3019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwareDatabaseImplement", "AbstractInstallationSoftwareDatabaseImplement\AbstractInstallationSoftwareDatabaseImplement.csproj", "{A60F3B52-B613-46B4-86CB-C1F1F89F3019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

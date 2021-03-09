@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateInital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,7 +21,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Package",
+                name: "Packages",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -31,14 +31,15 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Package", x => x.Id);
+                    table.PrimaryKey("PK_Packages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PackageId = table.Column<int>(nullable: false),
                     Count = table.Column<int>(nullable: false),
                     Sum = table.Column<decimal>(nullable: false),
@@ -50,15 +51,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Package_Id",
-                        column: x => x.Id,
-                        principalTable: "Package",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Package_PackageId",
+                        name: "FK_Orders_Packages_PackageId",
                         column: x => x.PackageId,
-                        principalTable: "Package",
+                        principalTable: "Packages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -83,9 +78,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PackageComponents_Package_PackageId",
+                        name: "FK_PackageComponents_Packages_PackageId",
                         column: x => x.PackageId,
-                        principalTable: "Package",
+                        principalTable: "Packages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -118,7 +113,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                 name: "Components");
 
             migrationBuilder.DropTable(
-                name: "Package");
+                name: "Packages");
         }
     }
 }

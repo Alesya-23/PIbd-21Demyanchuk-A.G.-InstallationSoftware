@@ -38,7 +38,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -81,7 +83,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Package");
+                    b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.PackageComponent", b =>
@@ -111,14 +113,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Package", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Package", "Package")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

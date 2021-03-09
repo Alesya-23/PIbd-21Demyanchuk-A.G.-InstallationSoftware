@@ -24,7 +24,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
 
         //связь с изделием
-        [ForeignKey("PackageId")]
         public virtual Package Package { get; set; }
     }
 }

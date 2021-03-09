@@ -12,12 +12,12 @@ namespace AbstractInstallationSoftwareDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-SN533ICB\SQLEXPRESS;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
         public virtual DbSet<Component> Components { set; get; }
-        public virtual DbSet<Package> Package { set; get; }
+        public virtual DbSet<Package> Packages { set; get; }
         public virtual DbSet<PackageComponent> PackageComponents { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
     }

@@ -16,5 +16,4 @@
   <ItemGroup>
     <ProjectReference Include="..\AbstractShopBusinessLogic\AbstractInstallationSoftBusinessLogic.csproj" />
   </ItemGroup>
-
 </Project>

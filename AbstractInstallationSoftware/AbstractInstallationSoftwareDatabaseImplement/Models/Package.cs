@@ -21,7 +21,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Models
         [ForeignKey("PackageId")]
         public List<PackageComponent> PackageComponents { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("PackageId")]
         public List<Order> Orders { get; set; }
     }
 }

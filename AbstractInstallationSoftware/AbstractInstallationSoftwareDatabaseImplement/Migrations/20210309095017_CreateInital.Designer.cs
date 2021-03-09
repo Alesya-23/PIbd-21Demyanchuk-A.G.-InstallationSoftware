@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 {
     [DbContext(typeof(AbstractInstallSoftDatabase))]
-    [Migration("20210305110948_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210309095017_CreateInital")]
+    partial class CreateInital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -83,7 +85,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Package");
+                    b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.PackageComponent", b =>
@@ -113,14 +115,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Package", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Package", "Package")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

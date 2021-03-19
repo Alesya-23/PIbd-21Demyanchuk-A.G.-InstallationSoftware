@@ -30,8 +30,8 @@
         {
             this.saveExelButton = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Package = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.component = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -50,8 +50,8 @@
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Package,
             this.component,
-            this.package,
             this.count});
             this.dataGridView.Location = new System.Drawing.Point(2, 66);
             this.dataGridView.Name = "dataGridView";
@@ -60,19 +60,19 @@
             this.dataGridView.Size = new System.Drawing.Size(567, 385);
             this.dataGridView.TabIndex = 1;
             // 
+            // Package
+            // 
+            this.Package.HeaderText = "пакет";
+            this.Package.MinimumWidth = 8;
+            this.Package.Name = "Package";
+            this.Package.Width = 150;
+            // 
             // component
             // 
-            this.component.HeaderText = "Компонент";
+            this.component.HeaderText = "компонент";
             this.component.MinimumWidth = 8;
             this.component.Name = "component";
             this.component.Width = 150;
-            // 
-            // package
-            // 
-            this.package.HeaderText = "Изделие";
-            this.package.MinimumWidth = 8;
-            this.package.Name = "package";
-            this.package.Width = 150;
             // 
             // count
             // 
@@ -100,8 +100,8 @@
 
         private System.Windows.Forms.Button saveExelButton;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Package;
         private System.Windows.Forms.DataGridViewTextBoxColumn component;
-        private System.Windows.Forms.DataGridViewTextBoxColumn package;
         private System.Windows.Forms.DataGridViewTextBoxColumn count;
     }
 }

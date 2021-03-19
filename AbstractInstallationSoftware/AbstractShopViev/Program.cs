@@ -14,6 +14,7 @@ namespace AbstractInstallationSoftView
     public static class Program
     {
         [STAThread]
+      
         static void Main()
         {
             var container = BuildUnityContainer();

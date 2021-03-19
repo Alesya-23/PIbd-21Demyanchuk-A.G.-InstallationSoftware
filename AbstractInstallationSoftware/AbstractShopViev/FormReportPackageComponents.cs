@@ -27,14 +27,14 @@ namespace AbstractInstallationSoftView
         {
             try
             {
-                var dict = logic.GetPackageComponent();
+                var dict = logic.GetComponentPackage();
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
                     foreach (var elem in dict)
                     {
-                        dataGridView.Rows.Add(new object[] { elem.ComponentName, "", "" });
-                        foreach (var listElem in elem.Packages)
+                        dataGridView.Rows.Add(new object[] { elem.PackageName, "", "" });
+                        foreach (var listElem in elem.Components)
                         {
                             dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }

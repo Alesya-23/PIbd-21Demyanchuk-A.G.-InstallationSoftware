@@ -71,11 +71,11 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = pc.ComponentName,
+                        Text = pc.PackageName,
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var package in pc.Packages)
+                    foreach (var package in pc.Components)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {

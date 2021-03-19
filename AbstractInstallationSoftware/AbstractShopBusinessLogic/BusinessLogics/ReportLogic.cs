@@ -26,33 +26,61 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
         /// Получение списка компонент с указанием, в каких изделиях используются
         /// </summary>
         /// <returns></returns>104
-        public List<ReportPackageComponentViewModel> GetPackageComponent()
+        //public List<ReportPackageComponentViewModel> GetPackageComponent()
+        //{
+        //    var components = _componentStorage.GetFullList();
+        //    var packages = _packageStorage.GetFullList();
+        //    var list = new List<ReportPackageComponentViewModel>();
+        //    foreach (var component in components)
+        //    {
+        //        var record = new ReportPackageComponentViewModel
+        //        {
+        //            ComponentName = component.ComponentName,
+        //            Packages = new List<Tuple<string, int>>(),
+        //            TotalCount = 0
+        //        };
+        //        foreach (var package in packages)
+        //        {
+        //            if (package.PackageComponents.ContainsKey(component.Id))
+        //            {
+        //                record.Packages.Add(new Tuple<string, int>(package.PackageName,
+        //               package.PackageComponents[component.Id].Item2));
+        //                record.TotalCount +=
+        //               package.PackageComponents[component.Id].Item2;
+        //            }
+        //        }
+        //        list.Add(record);
+        //    }
+        //    return list;
+        //}
+
+        public List<ReportPackageComponentViewModel> GetComponentPackage()
         {
             var components = _componentStorage.GetFullList();
             var packages = _packageStorage.GetFullList();
             var list = new List<ReportPackageComponentViewModel>();
-            foreach (var component in components)
+            foreach (var package in packages)
             {
                 var record = new ReportPackageComponentViewModel
                 {
-                    ComponentName = component.ComponentName,
-                    Packages = new List<Tuple<string, int>>(),
+                    PackageName = package.PackageName,
+                    Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var package in packages)
+                foreach (var component in components)
                 {
                     if (package.PackageComponents.ContainsKey(component.Id))
                     {
-                        record.Packages.Add(new Tuple<string, int>(package.PackageName,
+                        record.Components.Add(new Tuple<string, int>(component.ComponentName,
                        package.PackageComponents[component.Id].Item2));
-                        record.TotalCount +=
-                       package.PackageComponents[component.Id].Item2;
+                        record.TotalCount += package.PackageComponents[component.Id].Item2;
                     }
                 }
                 list.Add(record);
             }
             return list;
         }
+
         /// <summary>
         /// Получение списка заказов за определенный период
         /// </summary>
@@ -85,8 +113,8 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
-                Components = _componentStorage.GetFullList()
+                Title = "Список изделий",
+                Packages = _packageStorage.GetFullList()
             });
         }
         /// <summary>
@@ -98,10 +126,11 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
-                PackageComponents = GetPackageComponent()
+                Title = "Список изделий",
+                PackageComponents = GetComponentPackage()
             });
         }
+
         /// <summary>
         /// Сохранение заказов в файл-Pdf
         /// </summary>

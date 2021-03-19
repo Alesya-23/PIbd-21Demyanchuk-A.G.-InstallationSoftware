@@ -31,19 +31,34 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var component in info.Components)
-                {
-                    docBody.AppendChild(CreateParagraph(new WordParagraph
+                //                foreach (var component in info.Components)
+                //                {
+                //                    docBody.AppendChild(CreateParagraph(new WordParagraph
+                //                    {
+                //                        Texts = new List<(string, WordTextProperties)> {
+                //(component.ComponentName, new WordTextProperties { Bold = true, Size = "24", })},
+                //                        TextProperties = new WordTextProperties
+                //                        {
+                //                            Size = "24",
+                //                            JustificationValues = JustificationValues.Both
+                //                        }
+                //                    }));
+                //                }
+                if (info.Packages != null)
+                    foreach (var package in info.Packages)
                     {
-                        Texts = new List<(string, WordTextProperties)> {
-(component.ComponentName, new WordTextProperties { Bold = true, Size = "24", })},
-                        TextProperties = new WordTextProperties
+                        docBody.AppendChild(CreateParagraph(new WordParagraph
                         {
-                            Size = "24",
-                            JustificationValues = JustificationValues.Both
-                        }
-                    }));
-                }
+                            Texts = new List<(string, WordTextProperties)> {
+                        (package.PackageName, new WordTextProperties { Bold = true, Size = "24", }),
+                        (" " + package.Price, new WordTextProperties {Bold = false, Size = "24"}) },
+                            TextProperties = new WordTextProperties
+                            {
+                                Size = "24",
+                                JustificationValues = JustificationValues.Both
+                            }
+                        }));
+                    }
                 docBody.AppendChild(CreateSectionProperties());
                 wordDocument.MainDocumentPart.Document.Save();
             }

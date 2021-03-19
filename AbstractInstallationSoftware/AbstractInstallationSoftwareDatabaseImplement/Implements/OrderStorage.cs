@@ -37,7 +37,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                return context.Orders.Where(rec => rec.Id.Equals(model.Id)).Select(rec => new OrderViewModel
+                return context.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,

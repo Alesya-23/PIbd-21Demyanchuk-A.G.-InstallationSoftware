@@ -15,4 +15,3 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
         public string ComponentName { get; set; }
     }
 }
-

@@ -66,18 +66,18 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                var product = context.Packages
+                var package = context.Packages
                 .Include(rec => rec.PackageComponents)
                .ThenInclude(rec => rec.Component)
                .FirstOrDefault(rec => rec.PackageName == model.PackageName || rec.Id
                == model.Id);
-                return product != null ?
+                return package != null ?
                 new PackageViewModel
                 {
-                    Id = product.Id,
-                    PackageName = product.PackageName,
-                    Price = product.Price,
-                    PackageComponents = product.PackageComponents
+                    Id = package.Id,
+                    PackageName = package.PackageName,
+                    Price = package.Price,
+                    PackageComponents = package.PackageComponents
                 .ToDictionary(recPC => recPC.ComponentId, recPC =>
                (recPC.Component?.ComponentName, recPC.Count))
                 } :
@@ -92,8 +92,14 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 {
                     try
                     {
-                        Package package = CreateModel(model, new Package());
-                        context.Packages.Add(package);
+                        Package p = new Package
+                        {
+                            PackageName = model.PackageName,
+                            Price = model.Price
+                        };
+                        context.Packages.Add(p);
+                        context.SaveChanges();
+                        CreateModel(model, p, context);
                         context.SaveChanges();
                         transaction.Commit();
                     }

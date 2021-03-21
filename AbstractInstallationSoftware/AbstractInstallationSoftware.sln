@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftBus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftListImplement", "AbstractInstallationSoftListImplement\AbstractInstallationSoftListImplement.csproj", "{BCB11477-66C0-4925-A9D0-9C2B338E4DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractInstallationSoftwareFileImplement", "AbstractInstallationSoftwareFileImplement\AbstractInstallationSoftwareFileImplement.csproj", "{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwareFileImplement", "AbstractInstallationSoftwareFileImplement\AbstractInstallationSoftwareFileImplement.csproj", "{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwareDatabaseImplement", "AbstractInstallationSoftwareDatabaseImplement\AbstractInstallationSoftwareDatabaseImplement.csproj", "{A60F3B52-B613-46B4-86CB-C1F1F89F3019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77323B5A-8EFF-4EA8-B2D2-06D88C6F3CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

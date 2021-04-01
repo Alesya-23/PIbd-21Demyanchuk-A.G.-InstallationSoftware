@@ -8,6 +8,5 @@ namespace AbstractInstallationSoftBusinessLogic.HelperModels
     {
         public List<(string, WordTextProperties)> Texts { get; set; }
         public WordTextProperties TextProperties { get; set; }
-
     }
 }

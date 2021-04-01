@@ -62,14 +62,14 @@
             // 
             // Package
             // 
-            this.Package.HeaderText = "пакет";
+            this.Package.HeaderText = "Пакет";
             this.Package.MinimumWidth = 8;
             this.Package.Name = "Package";
             this.Package.Width = 150;
             // 
             // component
             // 
-            this.component.HeaderText = "компонент";
+            this.component.HeaderText = "Компонент";
             this.component.MinimumWidth = 8;
             this.component.Name = "component";
             this.component.Width = 150;
@@ -89,8 +89,8 @@
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.saveExelButton);
             this.Name = "FormReportPackageComponents";
-            this.Text = "FormReportProductComponents";
-            this.Load += new System.EventHandler(this.FormReportProductComponents_Load);
+            this.Text = "FormReportPackageComponents";
+            this.Load += new System.EventHandler(this.FormReportPackageComponents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

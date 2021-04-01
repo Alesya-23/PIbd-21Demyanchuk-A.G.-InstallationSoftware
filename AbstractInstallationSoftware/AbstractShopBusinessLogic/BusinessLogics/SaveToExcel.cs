@@ -63,7 +63,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                     CellToName = "C1"
                 });
                 uint rowIndex = 2;
-                foreach (var pc in info.PackageComponents)
+                foreach (var pc in info.ComponentPackage)
                 {
                     InsertCellInWorksheet(new ExcelCellParameters
                     {

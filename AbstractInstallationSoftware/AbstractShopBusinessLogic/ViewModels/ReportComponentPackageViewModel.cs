@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AbstractInstallationSoftBusinessLogic.ViewModels
 {
-   public class ReportPackageComponentViewModel
+    public class ReportComponentPackageViewModel
     {
         public string PackageName { get; set; }
         public int TotalCount { get; set; }

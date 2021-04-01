@@ -9,7 +9,6 @@ namespace AbstractInstallationSoftBusinessLogic.HelperModels
 {
     public class ExcelCellParameters
     {
-
         public Worksheet Worksheet { get; set; }
         public string ColumnName { get; set; }
         public uint RowIndex { get; set; }
@@ -17,6 +16,5 @@ namespace AbstractInstallationSoftBusinessLogic.HelperModels
         public string Text { get; set; }
         public SharedStringTablePart ShareStringPart { get; set; }
         public string CellReference => $"{ColumnName}{RowIndex}";
-    
     }
 }

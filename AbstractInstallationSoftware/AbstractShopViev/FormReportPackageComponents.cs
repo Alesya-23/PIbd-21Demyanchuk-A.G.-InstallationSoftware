@@ -23,7 +23,7 @@ namespace AbstractInstallationSoftView
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormReportProductComponents_Load(object sender, EventArgs e)
+        private void FormReportPackageComponents_Load(object sender, EventArgs e)
         {
             try
             {
@@ -53,11 +53,11 @@ namespace AbstractInstallationSoftView
         {
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
             {
-               if (dialog.ShowDialog() == DialogResult.OK)
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        logic.SavePackageComponentToExcelFile(new ReportBindingModel
+                        logic.SaveComponentPackageToExcelFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });
@@ -72,6 +72,5 @@ namespace AbstractInstallationSoftView
                 }
             }
         }
-
     }
 }

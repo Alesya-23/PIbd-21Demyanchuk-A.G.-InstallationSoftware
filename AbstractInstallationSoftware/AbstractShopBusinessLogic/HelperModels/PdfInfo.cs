@@ -14,5 +14,3 @@ namespace AbstractInstallationSoftBusinessLogic.HelperModels
         public List<ReportOrdersViewModel> Orders { get; set; }
     }
 }
-
-   

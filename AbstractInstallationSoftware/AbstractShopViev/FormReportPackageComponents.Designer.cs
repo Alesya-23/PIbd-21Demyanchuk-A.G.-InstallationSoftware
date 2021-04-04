@@ -89,7 +89,7 @@
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.saveExelButton);
             this.Name = "FormReportPackageComponents";
-            this.Text = "FormReportPackageComponents";
+            this.Text = "Отчет изделия по компонентам";
             this.Load += new System.EventHandler(this.FormReportPackageComponents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

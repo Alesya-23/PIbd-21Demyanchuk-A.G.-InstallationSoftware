@@ -58,12 +58,12 @@ namespace AbstractInstallationSoftView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxPackage.SelectedValue);
-                    PackageViewModel product = _logicP.Read(new PackageBindingModel
+                    PackageViewModel package = _logicP.Read(new PackageBindingModel
                     {
                         Id = id
                     })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+                    textBoxSum.Text = (count * package?.Price ?? 0).ToString();
                 }
                 catch (Exception ex)
                 {

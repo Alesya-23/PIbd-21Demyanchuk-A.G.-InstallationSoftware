@@ -12,7 +12,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-LAPTOP-SN533ICB\MSSQLSERVER;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-SN533ICB\MSSQLSERVER;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }

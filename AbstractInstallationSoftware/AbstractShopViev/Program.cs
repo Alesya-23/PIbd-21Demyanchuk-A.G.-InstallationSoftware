@@ -13,6 +13,8 @@ namespace AbstractInstallationSoftView
 {
     public static class Program
     {
+        [STAThread]
+      
         static void Main()
         {
             var container = BuildUnityContainer();
@@ -34,6 +36,9 @@ namespace AbstractInstallationSoftView
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<PackageLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new
+           HierarchicalLifetimeManager());
+
             return currentContainer;
         }
     }

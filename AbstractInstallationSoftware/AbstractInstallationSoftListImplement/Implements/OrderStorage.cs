@@ -45,6 +45,14 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
                     result.Add(CreateModel(order));
                 }
             }
+            List<OrderViewModel> resultForReport = new List<OrderViewModel>();
+            foreach (var order in source.Orders)
+            {
+                if (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                {
+                    resultForReport.Add(CreateModel(order));
+                }
+            }
             return result;
         }
 

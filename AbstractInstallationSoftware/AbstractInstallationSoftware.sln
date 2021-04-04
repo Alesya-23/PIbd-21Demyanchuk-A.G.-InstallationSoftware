@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractInstallationSoftwareDatabaseImplement", "AbstractInstallationSoftwareDatabaseImplement\AbstractInstallationSoftwareDatabaseImplement.csproj", "{A60F3B52-B613-46B4-86CB-C1F1F89F3019}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractInstallationSoftwareRestApi", "AbstractInstallationSoftwareRestApi\AbstractInstallationSoftwareRestApi.csproj", "{2C25DD60-4477-4691-9919-D555C53AF716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIClient", "APIClient\APIClient.csproj", "{619F1C86-C64B-491A-941D-022609F41B6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A60F3B52-B613-46B4-86CB-C1F1F89F3019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C25DD60-4477-4691-9919-D555C53AF716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C25DD60-4477-4691-9919-D555C53AF716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C25DD60-4477-4691-9919-D555C53AF716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C25DD60-4477-4691-9919-D555C53AF716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619F1C86-C64B-491A-941D-022609F41B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619F1C86-C64B-491A-941D-022609F41B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619F1C86-C64B-491A-941D-022609F41B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619F1C86-C64B-491A-941D-022609F41B6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

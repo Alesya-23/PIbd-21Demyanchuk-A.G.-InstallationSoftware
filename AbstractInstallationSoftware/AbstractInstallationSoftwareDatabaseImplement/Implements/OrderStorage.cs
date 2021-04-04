@@ -19,6 +19,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 return context.Orders.Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == rec.ClientId).ClientFullName,
                     PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
@@ -40,6 +42,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 return context.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == rec.ClientId).ClientFullName,
                     PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
@@ -63,6 +67,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 new OrderViewModel
                 {
                     Id = order.Id,
+                    ClientId = order.ClientId,
+                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == order.ClientId).ClientFullName,
                     PackageName = context.Packages.FirstOrDefault(r => r.Id == order.PackageId).PackageName,
                     PackageId = order.PackageId,
                     Count = order.Count,
@@ -137,6 +143,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;

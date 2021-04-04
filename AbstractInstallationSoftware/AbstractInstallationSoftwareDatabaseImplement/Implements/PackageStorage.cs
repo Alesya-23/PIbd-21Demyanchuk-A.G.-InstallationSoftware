@@ -154,12 +154,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 }
             }
         }
-        private Package CreateModel(PackageBindingModel model, Package package)
-        {
-            package.PackageName = model.PackageName;
-            package.Price = model.Price;
-            return package;
-        }
+
         private Package CreateModel(PackageBindingModel model, Package package,
        AbstractInstallSoftDatabase context)
         {

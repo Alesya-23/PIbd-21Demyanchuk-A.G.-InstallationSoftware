@@ -78,6 +78,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;
@@ -101,6 +102,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
+                ClientId = (int)order.ClientId,
                 PackageName = ResultPackageName,
                 Count = order.Count,
                 Status = order.Status,

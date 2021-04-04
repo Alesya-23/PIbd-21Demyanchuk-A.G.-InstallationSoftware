@@ -92,8 +92,14 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 {
                     try
                     {
-                        Package package = CreateModel(model, new Package());
-                        context.Packages.Add(package);
+                        Package p = new Package
+                        {
+                            PackageName = model.PackageName,
+                            Price = model.Price
+                        };
+                        context.Packages.Add(p);
+                        context.SaveChanges();
+                        CreateModel(model, p, context);
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -148,12 +154,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 }
             }
         }
-        private Package CreateModel(PackageBindingModel model, Package package)
-        {
-            package.PackageName = model.PackageName;
-            package.Price = model.Price;
-            return package;
-        }
+
         private Package CreateModel(PackageBindingModel model, Package package,
        AbstractInstallSoftDatabase context)
         {

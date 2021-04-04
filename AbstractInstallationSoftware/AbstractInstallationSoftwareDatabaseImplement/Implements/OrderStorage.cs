@@ -20,7 +20,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 return context.Orders.Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
-                    PackageName = context.Packages.Include(pr => pr.Orders).FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
+                    PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
                     Sum = rec.Sum,
@@ -41,7 +41,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 return context.Orders.Where(rec => rec.Id.Equals(model.Id)).Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
-                    PackageName = context.Packages.Include(pr => pr.Orders).FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
+                    PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
                     Sum = rec.Sum,
@@ -64,7 +64,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 new OrderViewModel
                 {
                     Id = order.Id,
-                    PackageName = context.Packages.Include(pr => pr.Orders).FirstOrDefault(r => r.Id == order.PackageId).PackageName,
+                    PackageName = context.Packages.FirstOrDefault(r => r.Id == order.PackageId).PackageName,
                     PackageId = order.PackageId,
                     Count = order.Count,
                     Sum = order.Sum,

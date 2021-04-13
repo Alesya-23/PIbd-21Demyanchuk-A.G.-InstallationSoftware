@@ -1,8 +1,10 @@
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+
 namespace APIClient
 {
     public static class APIClient
@@ -25,7 +27,7 @@ namespace APIClient
             }
             else
             {
-                throw new Exception(result); 
+                throw new Exception(result);
             }
         }
         public static void PostRequest<T>(string requestUrl, T model)

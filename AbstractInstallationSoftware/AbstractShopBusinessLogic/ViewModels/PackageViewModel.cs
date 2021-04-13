@@ -4,20 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using System.Runtime.Serialization;
 
 namespace AbstractInstallationSoftBusinessLogic.ViewModels
 {
     /// <summary>
     /// Изделие, изготавливаемое в магазине
     /// </summary>
+    [DataContract]
     public class PackageViewModel
     {
+        [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
         [DisplayName("Название изделия")]
         public string PackageName { get; set; }
+
+        [DataMember]
         [DisplayName("Цена")]
         public decimal Price { get; set; }
+
+        [DataMember]
         public Dictionary<int, (string, int)> PackageComponents { get; set; }
     }
 }

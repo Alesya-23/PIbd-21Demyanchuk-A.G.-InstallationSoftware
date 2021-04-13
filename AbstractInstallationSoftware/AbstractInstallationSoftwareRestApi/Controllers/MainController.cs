@@ -11,23 +11,21 @@ using System.Runtime.InteropServices;
 public class MainController : ControllerBase
 {
     private readonly OrderLogic _order;
-    private readonly PackageLogic _product;
+    private readonly PackageLogic _package;
     private readonly OrderLogic _main;
-    public MainController(OrderLogic order, PackageLogic product, OrderLogic main)
+    public MainController(OrderLogic order, PackageLogic package, OrderLogic main)
     {
         _order = order;
-        _product = product;
+        _package = package;
         _main = main;
     }
     [HttpGet]
-    public List<PackageViewModel> GetProductList() => _product.Read(null)?.ToList();
+    public List<PackageViewModel> GetPackageList() => _package.Read(null)?.ToList();
     [HttpGet]
-    public PackageViewModel GetProduct(int productId) => _product.Read(new
-   PackageBindingModel
-    { Id = productId })?[0];
+    public PackageViewModel GetPackage(int packageId) => _package.Read(new PackageBindingModel
+    { Id = packageId })?[0];
     [HttpGet]
-    public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new
-   OrderBindingModel
+    public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel
     { ClientId = clientId });
     [HttpPost]
     public void CreateOrder(CreateOrderBindingModel model) =>

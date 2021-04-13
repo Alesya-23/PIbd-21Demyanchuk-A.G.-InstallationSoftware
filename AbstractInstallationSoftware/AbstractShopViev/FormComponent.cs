@@ -28,6 +28,7 @@ namespace AbstractInstallationSoftView
                     if (view != null)
                     {
                         textBoxInput.Text = view.ComponentName;
+                      
                     }
                 }
                 catch (Exception ex)

@@ -1,1 +1,2 @@
-﻿
+﻿Delete from Orders
+go

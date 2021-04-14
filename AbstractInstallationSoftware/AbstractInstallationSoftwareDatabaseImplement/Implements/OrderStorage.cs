@@ -2,6 +2,7 @@
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
 using AbstractInstallationSoftwareDatabaseImplement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
         {
             using (var context = new AbstractInstallSoftDatabase())
             {
-                return context.Orders.Select(rec => new OrderViewModel
+                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client).Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
@@ -39,7 +40,11 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                return context.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(rec => new OrderViewModel
+                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client)
+                .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate == model.DateCreate) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
+                >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
@@ -62,7 +67,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                var order = context.Orders.Include(rec => rec.Package).Include(rec => rec.Client)
+              .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {

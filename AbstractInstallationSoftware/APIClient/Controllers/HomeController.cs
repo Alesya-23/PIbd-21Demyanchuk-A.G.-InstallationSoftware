@@ -22,7 +22,7 @@ namespace APIClient.Controllers
             {
                 return Redirect("~/Home/Enter");
             }
-            return View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders"));
+            return View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
         }
 
         [HttpGet]

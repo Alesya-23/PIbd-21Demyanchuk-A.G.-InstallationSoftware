@@ -21,8 +21,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
-                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == rec.ClientId).ClientFullName,
-                    PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
+                    ClientFullName = rec.Client.ClientFullName,
+                    PackageName = rec.Package.PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
                     Sum = rec.Sum,
@@ -48,8 +48,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
-                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == rec.ClientId).ClientFullName,
-                    PackageName = context.Packages.FirstOrDefault(r => r.Id == rec.PackageId).PackageName,
+                    ClientFullName = rec.Client.ClientFullName,
+                    PackageName = rec.Package.PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
                     Sum = rec.Sum,
@@ -73,15 +73,15 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                 new OrderViewModel
                 {
                     Id = order.Id,
-                    ClientId = order.ClientId,
-                    ClientFullName = context.Clients.FirstOrDefault(r => r.Id == order.ClientId).ClientFullName,
-                    PackageName = context.Packages.FirstOrDefault(r => r.Id == order.PackageId).PackageName,
+                    PackageName = order.Package.PackageName,
                     PackageId = order.PackageId,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
                     DateCreate = order.DateCreate,
-                    DateImplement = order.DateImplement
+                    DateImplement = order.DateImplement,
+                    ClientId = order.ClientId,
+                    ClientFullName = order.Client.ClientFullName,
                 } : null;
             }
         }

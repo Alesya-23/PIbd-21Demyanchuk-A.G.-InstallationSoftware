@@ -73,6 +73,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                 var component = _componentStorage.GetElement(new ComponentBindingModel
                 {
                     Id = compId
+                 
                 });
                 if (component == null)
                 {

@@ -129,20 +129,19 @@ namespace AbstractInstallationSoftListImplement.Implements
         private StorehouseViewModel CreateModel(Storehouse store)
         {
             // требуется дополнительно получить список компонентов для изделия с названиями и их количество
-            Dictionary<int, (string, int)> storehouseComponents = new
-            Dictionary<int, (string, int)>();
-            foreach (var pc in store.StorehouseComponents)
+            Dictionary<int, (string, int)> StoreComponents = new Dictionary<int, (string, int)>();
+            foreach (var sc in store.StorehouseComponents)
             {
-                string storehouseName = string.Empty;
-                foreach (var storehouse in source.Storehouse)
+                string componentName = string.Empty;
+                foreach (var component in source.Components)
                 {
-                    if (pc.Key == storehouse.Id)
+                    if (sc.Key == component.Id)
                     {
-                        storehouseName = storehouse.StoreHouseName;
+                        componentName = component.ComponentName;
                         break;
                     }
                 }
-                storehouseComponents.Add(pc.Key, (storehouseName, pc.Value.Item2));
+                StoreComponents.Add(sc.Key, (componentName, sc.Value.Item2));
             }
             return new StorehouseViewModel
             {
@@ -150,7 +149,7 @@ namespace AbstractInstallationSoftListImplement.Implements
                 StoreHouseName = store.StoreHouseName,
                 FullNameResponsiblePerson = store.FullNameResponsiblePerson,
                 DateGreate = store.DateCreate,
-                StorehouseComponents = storehouseComponents
+                StorehouseComponents = StoreComponents
             };
         }
     }

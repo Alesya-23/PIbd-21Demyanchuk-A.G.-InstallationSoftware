@@ -164,12 +164,12 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
         {
             order.PackageId = model.PackageId;
             order.ClientId = (int)model.ClientId;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
-            order.ImplementerId = model.ImplementerId;
             return order;
         }
     }

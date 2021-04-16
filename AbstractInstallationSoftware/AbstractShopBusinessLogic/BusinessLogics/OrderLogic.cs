@@ -98,7 +98,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
-                ImplementerId = model.ImplementerId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -126,7 +126,7 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
-                ImplementerId = model.ImplementerId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

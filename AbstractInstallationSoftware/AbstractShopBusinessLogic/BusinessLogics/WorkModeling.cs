@@ -79,8 +79,8 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                         order.Count);
                         _orderLogic.FinishOrder(new ChangeStatusBindingModel
                         {
-                            OrderId =
-                       order.Id
+                            OrderId =order.Id,
+                       ImplementerId = implementer.Id
                         });
                         // отдыхаем
                         Thread.Sleep(implementer.PauseTime);

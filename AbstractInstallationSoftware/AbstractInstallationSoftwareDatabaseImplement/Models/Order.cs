@@ -11,8 +11,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Models
     public class Order
     {
         public int Id { get; set; }
-
         public int ClientId { get; set; }
+        public virtual Implementer Implementer { get; set; }
+        public int? ImplementerId { get; set; }
         public int PackageId { get; set; }
         [Required]
         public int Count { get; set; }

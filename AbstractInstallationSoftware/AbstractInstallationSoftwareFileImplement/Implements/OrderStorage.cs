@@ -1,4 +1,5 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
+using AbstractInstallationSoftBusinessLogic.Enums;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
 using AbstractInstallationSoftwareFileImplement.Models;
@@ -32,9 +33,16 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                     .Select(CreateModel).ToList();
             }
             return source.Orders
-            .Where(rec => rec.DateCreate == model.DateCreate)
-           .Select(CreateModel)
-            .ToList();
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                    rec.DateCreate.Date == model.DateCreate.Date) ||
+                    (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                    rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <=
+                    model.DateTo.Value.Date) ||
+                    (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                    (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status == OrderStatus.Принят) ||
+                    (model.ImplementerId.HasValue && rec.ImplementerId ==
+                    model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+                    .Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -79,6 +87,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         {
             order.PackageId = model.PackageId;
             order.ClientId = (int)model.ClientId;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;
@@ -89,21 +98,15 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
-            string ResultPackageName = "";
-
-            foreach (var package in source.Packages)
-            {
-                if (order.PackageId == package.Id)
-                {
-                    ResultPackageName = package.PackageName;
-                }
-            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
                 ClientId = (int)order.ClientId,
-                PackageName = ResultPackageName,
+                ImplementerId = order.ImplementerId,
+                ClientFullName = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFullName,
+                ImplementerFIO = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.ImplementerFIO,
+                PackageName = source.Packages.FirstOrDefault(rec => rec.Id == order.PackageId)?.PackageName,
                 Count = order.Count,
                 Status = order.Status,
                 Sum = order.Sum,

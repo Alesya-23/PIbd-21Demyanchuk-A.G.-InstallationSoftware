@@ -21,6 +21,8 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
 
         [DataMember]
         public int? ClientId { get; set; }
+        [DataMember]
+        public int? ImplementerId { get; set; }
 
         [DataMember]
         public int PackageId { get; set; }
@@ -45,5 +47,8 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
 
         [DataMember]
         public DateTime? DateTo { get; set; }
+        [DataMember]
+        public bool? FreeOrders { get; set; }
+
     }
 }

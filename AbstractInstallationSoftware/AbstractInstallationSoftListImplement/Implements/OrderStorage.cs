@@ -110,20 +110,20 @@ namespace AbstractInstallationSoftListImplement.Implements
         }
         private OrderViewModel CreateModel(Order order)
         {
-            string ResultProductName = "";
+            string ResultPackageName = "";
 
             foreach (var package in source.Packages)
             {
                 if (order.PackageId == package.Id)
                 {
-                    ResultProductName = package.PackageName;
+                    ResultPackageName = package.PackageName;
                 }
             }
             return new OrderViewModel
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
-                PackageName = ResultProductName,
+                PackageName = ResultPackageName,
                 Count = order.Count,
                 Status = order.Status,
                 Sum = order.Sum,

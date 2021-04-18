@@ -132,7 +132,7 @@ namespace AbstractInstallationSoftView
             this.Controls.Add(this.textBoxFullName);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormClient";
-            this.Text = "Создание клиента";
+            this.Text = "Клиент";
             this.Load += new System.EventHandler(this.FormClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

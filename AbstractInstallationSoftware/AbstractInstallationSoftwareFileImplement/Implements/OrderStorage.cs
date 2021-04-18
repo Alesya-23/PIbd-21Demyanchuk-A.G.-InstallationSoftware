@@ -32,8 +32,10 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                     .Select(CreateModel).ToList();
             }
             return source.Orders
-            .Where(rec => rec.DateCreate == model.DateCreate)
-           .Select(CreateModel)
+            .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+            (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+            (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+            .Select(CreateModel)
             .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)

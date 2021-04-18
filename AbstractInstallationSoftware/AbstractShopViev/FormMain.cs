@@ -48,6 +48,16 @@ namespace AbstractInstallationSoftView
             var form = Container.Resolve<FormPackages>();
             form.ShowDialog();
         }
+        private void складToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStorehouses>();
+            form.ShowDialog();
+        }
+        private void пополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormAddingStorehouse>();
+            form.ShowDialog();
+        }
         private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();

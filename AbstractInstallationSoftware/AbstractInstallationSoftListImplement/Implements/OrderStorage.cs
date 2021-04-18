@@ -12,15 +12,12 @@ using System.Threading.Tasks;
 namespace AbstractInstallationSoftListImplement.Implements
 {
     public class OrderStorage : IOrderStorage
-
     {
         private readonly DataListSingleton source;
-
         public OrderStorage()
         {
             source = DataListSingleton.GetInstance();
         }
-
         public List<OrderViewModel> GetFullList()
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
@@ -30,7 +27,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             return result;
         }
-
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
             if (model == null)
@@ -47,7 +43,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             return result;
         }
-
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null)
@@ -63,7 +58,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             return null;
         }
-
         public void Insert(OrderBindingModel model)
         {
             Order tempOrder = new Order { Id = 1 };
@@ -76,7 +70,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             source.Orders.Add(CreateModel(model, tempOrder));
         }
-
         public void Update(OrderBindingModel model)
         {
             Order tempOrder = null;
@@ -93,7 +86,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             CreateModel(model, tempOrder);
         }
-
         public void Delete(OrderBindingModel model)
         {
             for (int i = 0; i < source.Components.Count; ++i)
@@ -106,7 +98,6 @@ namespace AbstractInstallationSoftListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
-
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
@@ -117,23 +108,22 @@ namespace AbstractInstallationSoftListImplement.Implements
             order.DateImplement = model.DateImplement;
             return order;
         }
-
         private OrderViewModel CreateModel(Order order)
         {
-            string ResultProductName = "";
+            string ResultPackageName = "";
 
             foreach (var package in source.Packages)
             {
                 if (order.PackageId == package.Id)
                 {
-                    ResultProductName = package.PackageName;
+                    ResultPackageName = package.PackageName;
                 }
             }
             return new OrderViewModel
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
-                PackageName = ResultProductName,
+                PackageName = ResultPackageName,
                 Count = order.Count,
                 Status = order.Status,
                 Sum = order.Sum,

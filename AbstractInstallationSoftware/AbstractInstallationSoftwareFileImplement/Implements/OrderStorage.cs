@@ -91,21 +91,12 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
-            string ResultPackageName = "";
-
-            foreach (var package in source.Packages)
-            {
-                if (order.PackageId == package.Id)
-                {
-                    ResultPackageName = package.PackageName;
-                }
-            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
                 ClientId = (int)order.ClientId,
-                PackageName = ResultPackageName,
+                PackageName = source.P.FirstOrDefault(p => p.Id == order.PackageId)?.PackageName,
                 Count = order.Count,
                 Status = order.Status,
                 Sum = order.Sum,

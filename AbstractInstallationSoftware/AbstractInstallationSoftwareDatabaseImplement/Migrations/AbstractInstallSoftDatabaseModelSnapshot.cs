@@ -19,6 +19,30 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClientFullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Component", b =>
                 {
                     b.Property<int>("Id")
@@ -42,6 +66,9 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -61,6 +88,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("PackageId");
 
@@ -113,6 +142,12 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Migrations
 
             modelBuilder.Entity("AbstractInstallationSoftwareDatabaseImplement.Models.Order", b =>
                 {
+                    b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Client", null)
+                        .WithMany("Order")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AbstractInstallationSoftwareDatabaseImplement.Models.Package", "Package")
                         .WithMany("Orders")
                         .HasForeignKey("PackageId")

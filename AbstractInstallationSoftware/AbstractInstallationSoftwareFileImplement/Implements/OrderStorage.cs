@@ -32,8 +32,10 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
                     .Select(CreateModel).ToList();
             }
             return source.Orders
-            .Where(rec => rec.DateCreate == model.DateCreate)
-           .Select(CreateModel)
+            .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+            (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+            (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+            .Select(CreateModel)
             .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -78,6 +80,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;
@@ -92,6 +95,7 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
+                ClientId = (int)order.ClientId,
                 PackageName = source.P.FirstOrDefault(p => p.Id == order.PackageId)?.PackageName,
                 Count = order.Count,
                 Status = order.Status,

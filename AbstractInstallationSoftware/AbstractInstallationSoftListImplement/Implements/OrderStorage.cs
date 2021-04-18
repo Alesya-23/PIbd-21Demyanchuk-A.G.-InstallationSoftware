@@ -48,7 +48,10 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             List<OrderViewModel> resultForReport = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue
+                    && order.DateCreate.Date == model.DateCreate.Date) ||
+(model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date) ||
+(model.ClientId.HasValue && order.ClientId == model.ClientId))
                 {
                     resultForReport.Add(CreateModel(order));
                 }
@@ -118,6 +121,7 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;
@@ -140,6 +144,7 @@ namespace AbstractIntstallationSoftwareListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = (int)order.ClientId,
                 PackageId = order.PackageId,
                 PackageName = ResultPackageName,
                 Count = order.Count,

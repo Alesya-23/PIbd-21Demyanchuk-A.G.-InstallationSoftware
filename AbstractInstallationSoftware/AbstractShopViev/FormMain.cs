@@ -2,14 +2,6 @@
 using AbstractInstallationSoftBusinessLogic.BusinessLogics;
 using AbstractInstallstionSoftView;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -41,6 +33,7 @@ namespace AbstractInstallationSoftView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -155,5 +148,10 @@ namespace AbstractInstallationSoftView
             form.ShowDialog();
         }
 
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
     }
 }

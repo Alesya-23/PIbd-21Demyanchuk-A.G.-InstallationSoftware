@@ -71,11 +71,11 @@ namespace AbstractInstallationSoftView
             this.textBoxFIO.Size = new System.Drawing.Size(212, 26);
             this.textBoxFIO.TabIndex = 3;
             // 
-            // textBoxTimeToOrder
+            // textBoxTimeToWork
             // 
             this.textBoxTimeToWork.Location = new System.Drawing.Point(198, 109);
             this.textBoxTimeToWork.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxTimeToWork.Name = "textBoxTimeToOrder";
+            this.textBoxTimeToWork.Name = "textBoxTimeToWork";
             this.textBoxTimeToWork.Size = new System.Drawing.Size(212, 26);
             this.textBoxTimeToWork.TabIndex = 4;
             // 
@@ -125,7 +125,6 @@ namespace AbstractInstallationSoftView
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormImplementer";
             this.Text = "Исполнитель";
-            this.Load += new System.EventHandler(this.FormImplementer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

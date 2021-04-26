@@ -17,7 +17,6 @@ namespace AbstractInstallationSoftView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
 
         private readonly ImplementerLogic logic;
@@ -29,10 +28,6 @@ namespace AbstractInstallationSoftView
             this.logic = logic;
         }
 
-        private void FormImplementer_Load(object sender, EventArgs e)
-        {
-
-        }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text) || string.IsNullOrEmpty(textBoxTimeToWork.Text) ||

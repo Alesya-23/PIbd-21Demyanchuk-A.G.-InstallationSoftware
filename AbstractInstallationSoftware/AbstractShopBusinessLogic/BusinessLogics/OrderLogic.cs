@@ -61,7 +61,6 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                 {
                     throw new Exception("У заказа уже есть исполнитель");
                 }
-
                 _orderStorage.Update(new OrderBindingModel
                 {
                     Id = order.Id,
@@ -75,8 +74,6 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
                     Status = OrderStatus.Выполняется
                 });
             }
-
-
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)

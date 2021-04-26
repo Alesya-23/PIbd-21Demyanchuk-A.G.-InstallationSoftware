@@ -12,7 +12,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
 {
     public class ImplementerStorage : IImplementerStorage
     {
-
         public List<ImplementerViewModel> GetFullList()
         {
             using (var context = new AbstractInstallSoftDatabase())

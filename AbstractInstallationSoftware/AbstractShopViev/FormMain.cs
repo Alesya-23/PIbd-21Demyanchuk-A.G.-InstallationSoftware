@@ -12,7 +12,7 @@ namespace AbstractInstallationSoftView
         [Unity.Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        private readonly  WorkModeling modelingWork;
+        private readonly WorkModeling modelingWork;
         private readonly ReportLogic report;
         public FormMain(OrderLogic orderLogic, ReportLogic report, WorkModeling modeling)
         {

@@ -1,31 +1,27 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
-using AbstractInstallationSoftListImplement;
-using AbstractInstallationSoftListImplement.Models;
+using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractInstallationSoftListImplement.Implements
+namespace AbstractInstallationSoftwareFileImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly DataListSingleton source;
+        private readonly FileDataListSingleton source;
         public OrderStorage()
         {
-            source = DataListSingleton.GetInstance();
+            source = FileDataListSingleton.GetInstance();
         }
         public List<OrderViewModel> GetFullList()
         {
-            List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
-            {
-                result.Add(CreateModel(order));
-            }
-            return result;
+            return source.Orders
+            .Select(CreateModel)
+           .ToList();
         }
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
@@ -33,15 +29,10 @@ namespace AbstractInstallationSoftListImplement.Implements
             {
                 return null;
             }
-            List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
-            {
-                if (order.PackageId == model.PackageId)
-                {
-                    result.Add(CreateModel(order));
-                }
-            }
-            return result;
+            return source.Orders
+            .Where(rec => rec.DateCreate == model.DateCreate)
+           .Select(CreateModel)
+            .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -49,54 +40,38 @@ namespace AbstractInstallationSoftListImplement.Implements
             {
                 return null;
             }
-            foreach (var order in source.Orders)
-            {
-                if (order.Id == model.Id || order.PackageId == model.PackageId)
-                {
-                    return CreateModel(order);
-                }
-            }
-            return null;
+            var order = source.Orders
+            .FirstOrDefault(rec => rec.Id == model.Id);
+            return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
         {
-            Order tempOrder = new Order { Id = 1 };
-            foreach (var order in source.Orders)
-            {
-                if (order.Id >= tempOrder.Id)
-                {
-                    tempOrder.Id = order.Id + 1;
-                }
-            }
-            source.Orders.Add(CreateModel(model, tempOrder));
+            int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec =>
+           rec.Id) : 0;
+            var element = new Order { Id = maxId + 1 };
+            source.Orders.Add(CreateModel(model, element));
         }
         public void Update(OrderBindingModel model)
         {
-            Order tempOrder = null;
-            foreach (var order in source.Orders)
-            {
-                if (order.Id == model.Id)
-                {
-                    tempOrder = order;
-                }
-            }
-            if (tempOrder == null)
+            var element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempOrder);
+            CreateModel(model, element);
         }
         public void Delete(OrderBindingModel model)
         {
-            for (int i = 0; i < source.Orders.Count; ++i)
+            Order element = source.Orders.FirstOrDefault(rec => rec.Id ==
+           model.Id);
+            if (element != null)
             {
-                if (source.Orders[i].Id == model.Id)
-                {
-                    source.Orders.RemoveAt(i);
-                    return;
-                }
+                source.Orders.Remove(element);
             }
-            throw new Exception("Элемент не найден");
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {

@@ -38,6 +38,7 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(1, -4);
             this.dataGridView.Name = "dataGridView";
@@ -97,7 +98,7 @@
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonAdd);
             this.Name = "FormPackages";
-            this.Text = "Форма пакетов";
+            this.Text = "Изделия";
             this.Load += new System.EventHandler(this.FormPackages_Load);
             this.Click += new System.EventHandler(this.FormPackages_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

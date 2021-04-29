@@ -12,7 +12,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-SN533ICB\MSSQLSERVERB;Initial Catalog=AbstractInstallSoftDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
@@ -22,5 +22,6 @@ namespace AbstractInstallationSoftwareDatabaseImplement
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
         public virtual DbSet<Implementer> Implementers { set; get; }
+        public virtual DbSet<MessageInfo> MessageInfos { set; get; }
     }
 }

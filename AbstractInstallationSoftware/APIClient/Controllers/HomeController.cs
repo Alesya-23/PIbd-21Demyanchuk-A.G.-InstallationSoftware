@@ -134,6 +134,15 @@ namespace APIClient.Controllers
             Response.Redirect("Index");
         }
 
+        public IActionResult Mails()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/GetMassages?clientId={Program.Client.Id}"));
+        }
+
         [HttpPost]
         public decimal Calc(decimal count, int package)
         {

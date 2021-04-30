@@ -1,4 +1,5 @@
 ﻿using AbstractInstallationSoftBusinessLogic.Enums;
+using AbstractInstallationSoftwareFileImplement.Implements;
 using AbstractInstallationSoftwareFileImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,17 @@ namespace AbstractInstallationSoftwareFileImplement
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string PackageFileName = "Package.xml";
+        private readonly string StorehouseFileName = "Storehouse.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Package> Packages { get; set; }
+        public List<Storehouse> Storehouses{ get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Packages = LoadPackages();
+            Storehouses = LoadStorehouseStorages();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -37,6 +41,7 @@ namespace AbstractInstallationSoftwareFileImplement
             SaveComponents();
             SaveOrders();
             SavePackages();
+            SaveStorehouseStorages();
         }
         private List<Component> LoadComponents()
         {
@@ -106,6 +111,36 @@ namespace AbstractInstallationSoftwareFileImplement
             }
             return list;
         }
+
+        private List<Storehouse> LoadStorehouseStorages()
+        {
+            var list = new List<Storehouse>();
+            if (File.Exists(StorehouseFileName))
+            {
+                XDocument xDocument = XDocument.Load(StorehouseFileName);
+                var xElements = xDocument.Root.Elements("Storehouse").ToList();
+                foreach (var elem in xElements)
+                {
+                    var houseComp = new Dictionary<int, (string, int)>();
+                    foreach (var component in
+                    elem.Element("StorehouseComponents").Elements("StorehouseComponent").ToList())
+                    {
+                        houseComp.Add(Convert.ToInt32(component.Element("Key").Value),
+                            (component.Element("Value").Value.ToString(), 
+                            Convert.ToInt32(component.Element("Value").Value)));
+                    }
+                    list.Add(new Storehouse
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        StoreHouseName = elem.Element("StorehouseName").Value,
+                        FullNameResponsiblePerson = elem.Element("Responsible").Value,
+                        DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
+                        StorehouseComponents = houseComp
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveComponents()
         {
             if (Components != null)
@@ -165,5 +200,32 @@ namespace AbstractInstallationSoftwareFileImplement
                 xDocument.Save(PackageFileName);
             }
         }
+
+        private void SaveStorehouseStorages()
+        {
+            if (Storehouses != null)
+            {
+                var xElement = new XElement("Storehouses");
+                foreach (var house in Storehouses)
+                {
+                    var compElement = new XElement("StorehouseComponents");
+                    foreach (var component in house.StorehouseComponents)
+                    {
+                        compElement.Add(new XElement("StorehouseComponent",
+                        new XElement("Key", component.Key),
+                        new XElement("Value", component.Value)));
+                    }
+                    xElement.Add(new XElement("Storehouse",
+                    new XAttribute("Id", house.Id),
+                    new XElement("StorehouseName", house.StoreHouseName),
+                    new XElement("Responsible", house.FullNameResponsiblePerson),
+                    new XElement("DateCreate", house.DateCreate),
+                    compElement));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(StorehouseFileName);
+            }
+        }
     }
 }
+  

@@ -1,4 +1,5 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BindingModels;
+using AbstractInstallationSoftBusinessLogic.Enums;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftBusinessLogic.ViewModels;
 using AbstractInstallationSoftwareDatabaseImplement.Models;
@@ -17,11 +18,13 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
         {
             using (var context = new AbstractInstallSoftDatabase())
             {
-                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client).Select(rec => new OrderViewModel
+                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client).Include(rec => rec.Implementer).Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     ClientFullName = rec.Client.ClientFullName,
+                    ImplementerId = rec.ImplementerId,
+                    ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
                     PackageName = rec.Package.PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
@@ -40,15 +43,24 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client)
-                 .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
-            (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
-            (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                return context.Orders.Include(rec => rec.Package).Include(rec => rec.Client).Include(rec => rec.Implementer).
+                Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                rec.DateCreate.Date == model.DateCreate.Date) ||
+                 (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <=
+                model.DateTo.Value.Date) ||
+                 (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status ==
+                OrderStatus.Принят) ||
+                 (model.ImplementerId.HasValue && rec.ImplementerId ==
+                model.ImplementerId && rec.Status == OrderStatus.Выполняется))
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     ClientFullName = rec.Client.ClientFullName,
+                    ImplementerId = rec.ImplementerId,
+                    ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
                     PackageName = rec.Package.PackageName,
                     PackageId = rec.PackageId,
                     Count = rec.Count,
@@ -67,7 +79,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
             }
             using (var context = new AbstractInstallSoftDatabase())
             {
-                var order = context.Orders.Include(rec => rec.Package).Include(rec => rec.Client)
+                var order = context.Orders.Include(rec => rec.Package).Include(rec => rec.Client).Include(rec => rec.Implementer)
               .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
@@ -75,6 +87,8 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
                     Id = order.Id,
                     PackageName = order.Package.PackageName,
                     PackageId = order.PackageId,
+                    ImplementerId = order.ImplementerId,
+                    ImplementerFIO = order.ImplementerId.HasValue ? order.Implementer.ImplementerFIO : string.Empty,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
@@ -150,6 +164,7 @@ namespace AbstractInstallationSoftwareDatabaseImplement.Implements
         {
             order.PackageId = model.PackageId;
             order.ClientId = (int)model.ClientId;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;

@@ -45,7 +45,6 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
         [DataMember]
         public DateTime? DateFrom { get; set; }
 
-        [DataMember]
         public DateTime? DateTo { get; set; }
         [DataMember]
         public bool? FreeOrders { get; set; }

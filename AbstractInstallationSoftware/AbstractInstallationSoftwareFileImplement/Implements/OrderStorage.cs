@@ -102,7 +102,6 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
             {
                 Id = order.Id,
                 PackageId = order.PackageId,
-                ClientId = (int)order.ClientId,
                 ImplementerId = order.ImplementerId,
                 ClientFullName = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFullName,
                 ImplementerFIO = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.ImplementerFIO,

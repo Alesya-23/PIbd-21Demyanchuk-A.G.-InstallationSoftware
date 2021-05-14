@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace AbstractInstallationSoftwareRestApi
 {
@@ -41,8 +42,14 @@ namespace AbstractInstallationSoftwareRestApi
             services.AddControllers().AddNewtonsoftJson();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMessageInfoStorage messageInfoStorage)
         {
+            var timer = new Timer(new TimerCallback(MailCheck), new MailCheckInfo
+            {
+                PopHost = "pop.gmail.com",
+                PopPort = 995,
+                Storage = messageInfoStorage
+            }, 0, 100000);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,6 +61,10 @@ namespace AbstractInstallationSoftwareRestApi
             {
                 endpoints.MapControllers();
             });
+        }
+        private static void MailCheck(object obj)
+        {
+            MailLogic.MailCheck((MailCheckInfo)obj);
         }
     }
 }

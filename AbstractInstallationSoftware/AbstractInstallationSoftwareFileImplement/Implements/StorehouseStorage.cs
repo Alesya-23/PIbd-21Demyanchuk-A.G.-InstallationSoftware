@@ -142,8 +142,13 @@ namespace AbstractInstallationSoftwareFileImplement.Implements
         {
             var list = GetFullList();
 
+            var DCounts = source.Packages.FirstOrDefault(rec => rec.Id == PackId);
+            
+            if (DCounts == null)
+            {
+                return false;
+            }
             var DCount = source.Packages.FirstOrDefault(rec => rec.Id == PackId).PackageComponents;
-
             DCount = DCount.ToDictionary(rec => rec.Key, rec => rec.Value * PackCount);
 
             Dictionary<int, int> Have = new Dictionary<int, int>();

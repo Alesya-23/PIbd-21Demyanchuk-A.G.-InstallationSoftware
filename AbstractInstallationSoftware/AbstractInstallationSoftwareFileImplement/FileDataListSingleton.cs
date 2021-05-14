@@ -121,13 +121,11 @@ namespace AbstractInstallationSoftwareFileImplement
                 var xElements = xDocument.Root.Elements("Storehouse").ToList();
                 foreach (var elem in xElements)
                 {
-                    var houseComp = new Dictionary<int, (string, int)>();
-                    foreach (var component in
-                    elem.Element("StorehouseComponents").Elements("StorehouseComponent").ToList())
+                    var storeComponents = new Dictionary<int, (string, int)>();
+                    foreach (var component in elem.Element("StoreComponents").Elements("StoreComponent").ToList())
                     {
-                        houseComp.Add(Convert.ToInt32(component.Element("Key").Value),
-                            (component.Element("Value").Value.ToString(), 
-                            Convert.ToInt32(component.Element("Value").Value)));
+                        var componentData = (component.Element("Component").Element("Name").Value, Convert.ToInt32(component.Element("Component").Element("Count").Value));
+                        storeComponents.Add(Convert.ToInt32(component.Element("Key").Value), componentData);
                     }
                     list.Add(new Storehouse
                     {
@@ -135,7 +133,7 @@ namespace AbstractInstallationSoftwareFileImplement
                         StoreHouseName = elem.Element("StorehouseName").Value,
                         FullNameResponsiblePerson = elem.Element("Responsible").Value,
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
-                        StorehouseComponents = houseComp
+                        StorehouseComponents = storeComponents
                     });
                 }
             }
@@ -208,12 +206,16 @@ namespace AbstractInstallationSoftwareFileImplement
                 var xElement = new XElement("Storehouses");
                 foreach (var house in Storehouses)
                 {
-                    var compElement = new XElement("StorehouseComponents");
+                    var compElement = new XElement("StoreComponents");
                     foreach (var component in house.StorehouseComponents)
                     {
-                        compElement.Add(new XElement("StorehouseComponent",
+                        var element = new XElement("Component");
+                        element.Add(
+                            new XElement("Name", component.Value.Item1), new XElement("Count", component.Value.Item2)
+                            );
+                        compElement.Add(new XElement("StoreComponent",
                         new XElement("Key", component.Key),
-                        new XElement("Value", component.Value)));
+                        element));
                     }
                     xElement.Add(new XElement("Storehouse",
                     new XAttribute("Id", house.Id),

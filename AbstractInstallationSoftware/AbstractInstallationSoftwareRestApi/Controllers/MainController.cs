@@ -27,6 +27,9 @@ public class MainController : ControllerBase
     [HttpGet]
     public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel
     { ClientId = clientId });
+    [HttpGet]
+    //public List<MessageInfoViewModel> GetMails(int clientId) => _order.Read(new OrderBindingModel
+    //{ ClientId = clientId });
     [HttpPost]
     public void CreateOrder(CreateOrderBindingModel model) =>
    _main.CreateOrder(model);

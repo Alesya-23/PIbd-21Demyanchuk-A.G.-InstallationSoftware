@@ -1,9 +1,12 @@
 ﻿using AbstractInstallationSoftBusinessLogic.BusinessLogics;
+using AbstractInstallationSoftBusinessLogic.HelperModels;
 using AbstractInstallationSoftBusinessLogic.Interfaces;
 using AbstractInstallationSoftwareDatabaseImplement.Implements;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
@@ -12,16 +15,36 @@ using Unity.Lifetime;
 namespace AbstractInstallationSoftView
 {
     public static class Program
-    {
+    {/// <summary>
+     /// Главная точка входа для приложения.
+     /// </summary>
         [STAThread]
-      
         static void Main()
         {
             var container = BuildUnityContainer();
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"],
+                SmtpClientPort =
+           Convert.ToInt32(ConfigurationManager.AppSettings["SmtpClientPort"]),
+                MailLogin = ConfigurationManager.AppSettings["MailLogin"],
+                MailPassword = ConfigurationManager.AppSettings["MailPassword"],
+            });
+            // создаем таймер
+            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new
+           MailCheckInfo
+            {
+                PopHost = ConfigurationManager.AppSettings["PopHost"],
+                PopPort = Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"]),
+                Storage = container.Resolve<IMessageInfoStorage>(),
+  ClientStorage = container.Resolve<IClientStorage>()
+            }, 0, 1000);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(container.Resolve<FormMain>());
         }
+
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
@@ -35,6 +58,8 @@ namespace AbstractInstallationSoftView
           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new
         HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMessageInfoStorage, MessageInfoStorage>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComponentLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
@@ -46,8 +71,12 @@ namespace AbstractInstallationSoftView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ImplementerLogic>(new
            HierarchicalLifetimeManager());
-
+            currentContainer.RegisterType<MailLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
+        }
+        private static void MailCheck(object obj)
+        {
+            MailLogic.MailCheck((MailCheckInfo)obj);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbstractInstallationSoftBusinessLogic.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -9,19 +10,20 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
     [DataContract]
     public class ClientViewModel
     {
+        [Column(title: "Номер", width: 100)]
         [DataMember]
         public int? Id { get; set; }
 
         [DataMember]
-        [DisplayName("ФИО")]
+        [Column(title: "Клиент", width: 150)]
         public string ClientFullName { get; set; }
 
         [DataMember]
-        [DisplayName("Логин")]
+        [Column(title: "Логин", width: 100)]
         public string Email { get; set; }
 
         [DataMember]
-        [DisplayName("Пароль")]
+        [Column(title: "Пароль", width: 100)]
         public string Password { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using AbstractInstallationSoftBusinessLogic.Attributes;
 
 namespace AbstractInstallationSoftBusinessLogic.ViewModels
 {
@@ -18,11 +19,11 @@ namespace AbstractInstallationSoftBusinessLogic.ViewModels
         public int Id { get; set; }
 
         [DataMember]
-        [DisplayName("Название изделия")]
+        [Column(title: "Название изделия", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string PackageName { get; set; }
 
         [DataMember]
-        [DisplayName("Цена")]
+        [Column(title: "Цена", width: 50)]
         public decimal Price { get; set; }
 
         [DataMember]

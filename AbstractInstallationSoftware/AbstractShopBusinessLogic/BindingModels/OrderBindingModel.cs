@@ -15,7 +15,6 @@ namespace AbstractInstallationSoftBusinessLogic.BindingModels
     [DataContract]
     public class OrderBindingModel
     {
-
         [DataMember]
         public int? Id { get; set; }
 

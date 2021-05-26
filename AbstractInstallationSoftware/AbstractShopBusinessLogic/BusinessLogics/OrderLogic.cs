@@ -53,11 +53,11 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!_storeStorage.Extract(order.PackageId, order.Count))
+            if (!_storeStorage.Extract(order.Count, order.PackageId))
             {
                 throw new Exception("Недостаточно компонентов на складах, ожидайте пополнения");
             }
-            _storeStorage.Extract(order.PackageId, order.Count);
+            //_storeStorage.Extract(order.PackageId, order.Count);
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,

@@ -67,6 +67,14 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             {
                 store.StorehouseComponents[compId] =
                     (store.StorehouseComponents[compId].Item1, store.StorehouseComponents[compId].Item2 + count);
+                _storehouseStorage.Update(new StorehouseBindingModel
+                {
+                    Id = store.Id,
+                    StoreHouseName = store.StoreHouseName,
+                    FullNameResponsiblePerson = store.FullNameResponsiblePerson,
+                    DateCreate = store.DateGreate,
+                    StorehouseComponents = store.StorehouseComponents
+                });
             }
             else
             {

@@ -14,5 +14,7 @@ namespace AbstractInstallationSoftBusinessLogic.Interfaces
         void Insert(StorehouseBindingModel model);
         void Update(StorehouseBindingModel model);
         void Delete(StorehouseBindingModel model);
+        void Availability(StorehouseBindingModel houseBindingModel, int StorehouseId, int ComponentId, int Count, string ComponentName);
+        bool Extract(int PackCount, int PackId);
     }
 }

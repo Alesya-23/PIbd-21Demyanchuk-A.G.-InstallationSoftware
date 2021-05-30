@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -188,8 +188,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractInstallationSoftListImplement\AbstractInstallationSoftListImplement.csproj">
-      <Project>{BCB11477-66C0-4925-A9D0-9C2B338E4DF8}</Project>
+      <Project>{bcb11477-66c0-4925-a9d0-9c2b338e4df8}</Project>
       <Name>AbstractInstallationSoftListImplement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractInstallationSoftwareFileImplement\AbstractInstallationSoftwareFileImplement.csproj">
+      <Project>{77323b5a-8eff-4ea8-b2d2-06d88c6f3cf2}</Project>
+      <Name>AbstractInstallationSoftwareFileImplement</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractShopBusinessLogic\AbstractInstallationSoftBusinessLogic.csproj">
       <Project>{601f264d-9580-4928-81ce-6fe4b6f93f22}</Project>

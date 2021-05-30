@@ -9,9 +9,11 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IStorehouse _storeStorage;
+        public OrderLogic(IOrderStorage orderStorage, IStorehouse store)
         {
             _orderStorage = orderStorage;
+            _storeStorage = store;
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
@@ -51,6 +53,11 @@ namespace AbstractInstallationSoftBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            if (!_storeStorage.Extract(order.Count, order.PackageId))
+            {
+                throw new Exception("Недостаточно компонентов на складах, ожидайте пополнения");
+            }
+            //_storeStorage.Extract(order.PackageId, order.Count);
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,

@@ -152,5 +152,15 @@ namespace AbstractInstallationSoftListImplement.Implements
                 StorehouseComponents = StoreComponents
             };
         }
+
+        void IStorehouse.Availability(StorehouseBindingModel houseBindingModel, int StorehouseId, int ComponentId, int Count, string ComponentName)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IStorehouse.Extract(int PackCount, int PackId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
